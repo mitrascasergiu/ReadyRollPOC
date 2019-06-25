@@ -1,13 +1,13 @@
 ﻿/*
     Target database:    i-Balancer
     Target instance:    V-GNRC-SG01\SQL2012
-    Generated date:     25/06/2019 14:09:15
+    Generated date:     25/06/2019 14:11:37
     Generated on:       V-GNRC-SG01
     Package version:    (undefined)
     Migration version:  (n/a)
     Baseline version:   (n/a)
     SQL Change Automation version:  3.2.19162.8508
-    Migrations pending: 1
+    Migrations pending: 0
 
     IMPORTANT! "SQLCMD Mode" must be activated prior to execution (under the Query menu in SSMS).
 
@@ -118,17 +118,6 @@ SET IMPLICIT_TRANSACTIONS, NUMERIC_ROUNDABORT OFF;
 SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL, NOCOUNT, QUOTED_IDENTIFIER ON;
 
 
-
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------       INCREMENTAL MIGRATIONS       ------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
-
 SET IMPLICIT_TRANSACTIONS, NUMERIC_ROUNDABORT OFF;
 SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL, NOCOUNT, QUOTED_IDENTIFIER ON;
 
@@ -150,92 +139,9 @@ PRINT '# Truncating __SchemaSnapshot';
 TRUNCATE TABLE [dbo].[__SchemaSnapshot];
 
 GO
-SET IMPLICIT_TRANSACTIONS, NUMERIC_ROUNDABORT OFF;
-SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL, NOCOUNT, QUOTED_IDENTIFIER ON;
-
-GO
-IF DB_NAME() != '$(DatabaseName)'
-  USE [$(DatabaseName)];
-
-GO
-IF EXISTS (SELECT 1 FROM [$(DatabaseName)].[dbo].[__MigrationLogCurrent] WHERE [migration_id] = CAST ('746588d5-ce31-46cd-80f7-fecd70c76eb4' AS UNIQUEIDENTIFIER))
-  BEGIN
-    IF @@TRANCOUNT > 0
-      ROLLBACK;
-    RAISERROR ('This script "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql" has already been executed within the "$(DatabaseName)" database on this server. Halting deployment.', 16, 127);
-    RETURN;
-  END
-
-GO
-PRINT '
-
-***** EXECUTING MIGRATION "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql", ID: {746588d5-ce31-46cd-80f7-fecd70c76eb4} *****';
-
-GO
-
-
--------------------- BEGIN INCREMENTAL MIGRATION: "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql" ---------------------
-GO
--- <Migration ID="746588d5-ce31-46cd-80f7-fecd70c76eb4" />
-GO
-
-
-GO
-PRINT N'Altering [dbo].[ib_EquityCash_Select]...';
-
-
-GO
-/*
-Programmer:  Bruce McQuien	
-Description:  Selects cash records from ib_equitycash.
-Date:  28/11/2006
-*/
-
---test sergiu
-
-ALTER PROC dbo.ib_EquityCash_Select
-@EquityHeaderId int,
-@InternalExternalCode char(1)
-
-AS
-SET NOCOUNT ON
-
-
-SELECT [Description]
-      ,[Amount]
-	  ,[InternalExternalCode] 
-FROM [dbo].[ib_EquityCash]
-WHERE EquityHeaderId = @EquityHeaderId
-AND InternalExternalCode = @InternalExternalCode
-GO
-
-
-GO
---------------------- END INCREMENTAL MIGRATION: "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql" ----------------------
-
-
-GO
-IF @@TRANCOUNT <> 1
-  BEGIN
-    DECLARE @ErrorMessage AS NVARCHAR (4000);
-    SET @ErrorMessage = 'This migration "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql" has left the transaction in an invalid or closed state (@@TRANCOUNT=' + CAST (@@TRANCOUNT AS NVARCHAR (10)) + '). Please ensure exactly 1 transaction is open by the end of the migration script.  Rolling-back any pending transactions.';
-    RAISERROR (@ErrorMessage, 16, 127);
-    RETURN;
-  END
-
-INSERT [$(DatabaseName)].[dbo].[__MigrationLog] ([migration_id], [script_checksum], [script_filename], [complete_dt], [applied_by], [deployed], [version], [package_version], [release_version])
-VALUES                                         (CAST ('746588d5-ce31-46cd-80f7-fecd70c76eb4' AS UNIQUEIDENTIFIER), '506DEF97E48D2875B24CB6601A44AB97B23A9F30DDF786220747DEE9661B9C6B', 'Migrations\1.0.1\001_20190625-1408_MitrascaS.sql', SYSDATETIME(), SYSTEM_USER, 1, NULL, '$(PackageVersion)', CASE '$(ReleaseVersion)' WHEN '' THEN NULL ELSE '$(ReleaseVersion)' END);
-
-PRINT '***** FINISHED EXECUTING MIGRATION "Migrations\1.0.1\001_20190625-1408_MitrascaS.sql", ID: {746588d5-ce31-46cd-80f7-fecd70c76eb4} *****
-';
-
-GO
 PRINT '# Committing transaction';
 
 COMMIT TRANSACTION;
-
-GO
-PRINT '1 migration(s) deployed successfully';
 
 GO
 
