@@ -175,4 +175,7 @@
   <ItemGroup>
     <None Include="Migrations\1.0.0\001_20190625-0815_MitrascaS.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrations\1.0.1\001_20190625-1408_MitrascaS.sql" />
+  </ItemGroup>
 </Project>

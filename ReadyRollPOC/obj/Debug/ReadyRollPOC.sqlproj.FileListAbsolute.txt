@@ -1,0 +1,11 @@
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\ReadyRollPOC_Package.sql
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\ReadyRollPOC_DeployPackage.ps1
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\ReadyRollPOC.sql
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\ReadyRollPOC.dll
+C:\Dev\ReadyRollPOC\ReadyRollPOC\bin\Debug\ReadyRollPOC.pdb
+C:\Dev\ReadyRollPOC\ReadyRollPOC\obj\Debug\ReadyRollPOC.sqlprojAssemblyReference.cache
+C:\Dev\ReadyRollPOC\ReadyRollPOC\obj\Debug\ReadyRollPOC.sql
+C:\Dev\ReadyRollPOC\ReadyRollPOC\obj\Debug\TargetedProvisioningScript.sql
+C:\Dev\ReadyRollPOC\ReadyRollPOC\obj\Debug\ReadyRollPOC.dll
+C:\Dev\ReadyRollPOC\ReadyRollPOC\obj\Debug\ReadyRollPOC.pdb
